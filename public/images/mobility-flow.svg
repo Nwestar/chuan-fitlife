@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#EEF7F5"/>
+  <path d="M140 420C220 260 420 200 660 260" stroke="#2F7D72" stroke-width="18" stroke-linecap="round"/>
+  <path d="M160 340C260 160 480 160 640 240" stroke="#7FBEB2" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="260" cy="250" r="70" fill="#B0D7CD"/>
+  <circle cx="560" cy="320" r="90" fill="#4F9F92"/>
+  <text x="90" y="130" fill="#1B4B46" font-size="46" font-family="Arial, sans-serif" font-weight="700">Mobility Flow</text>
+</svg>
