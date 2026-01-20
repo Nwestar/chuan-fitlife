@@ -1,18 +1,6 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "./firebase";
+import products from "../data/products.json";
 
-export async function fetchProducts() {
-  const snapshot = await getDocs(collection(db, "products"));
-  return snapshot.docs.map((docSnapshot) => ({
-    id: docSnapshot.id,
-    ...docSnapshot.data(),
-  }));
-}
+export const getProducts = () => products;
 
-export async function fetchProductById(id) {
-  const productDoc = await getDoc(doc(db, "products", id));
-  if (!productDoc.exists()) {
-    return null;
-  }
-  return { id: productDoc.id, ...productDoc.data() };
-}
+export const getProductById = (id) =>
+  products.find((product) => product.id === id);

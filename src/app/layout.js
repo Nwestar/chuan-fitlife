@@ -1,69 +1,38 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import Providers from "../components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "FitLife | 健康管理品牌",
-  description: "FitLife 專注於健康管理與體態優化，提供專業服務與商品方案。",
+  title: "FitLife | 商品展示",
+  description: "FitLife 商品展示平台，專注於健康與體態管理。",
 };
-
-const navLinks = [
-  { label: "商品", href: "/products" },
-  { label: "關於我們", href: "#about" },
-  { label: "店面資訊", href: "#locations" },
-  { label: "聯絡我們", href: "#contact" },
-];
 
 export default function RootLayout({ children }) {
   return (
     <html lang="zh-Hant">
       <body className={inter.className}>
-        <Providers>
-          <div className="flex min-h-screen flex-col bg-white">
-            <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
-              <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
-                <Link href="/" className="text-xl font-semibold text-slate-900">
-                  FitLife
+        <div className="flex min-h-screen flex-col">
+          <header className="border-b border-slate-200 bg-white">
+            <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+              <Link href="/" className="text-xl font-semibold text-slate-900">
+                FitLife
+              </Link>
+              <nav className="flex items-center gap-4 text-sm text-slate-600">
+                <Link href="/products" className="transition hover:text-slate-900">
+                  商品列表
                 </Link>
-                <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="transition hover:text-slate-900"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
-                <div className="flex items-center gap-3">
-                  <Link
-                    href="/login"
-                    className="text-sm font-semibold text-slate-600 transition hover:text-slate-900"
-                  >
-                    登入
-                  </Link>
-                  <Link
-                    href="/products"
-                    className="inline-flex items-center justify-center rounded-full border border-brand-600 px-4 py-2 text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
-                  >
-                    查看商品
-                  </Link>
-                </div>
-              </div>
-            </header>
-            <main className="flex-1">{children}</main>
-            <footer className="border-t border-slate-200 bg-white">
-              <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-                <span>© 2026 FitLife. All rights reserved.</span>
-                <span>健康管理・體態訓練・未來會員服務</span>
-              </div>
-            </footer>
-          </div>
-        </Providers>
+              </nav>
+            </div>
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="border-t border-slate-200 bg-white">
+            <div className="mx-auto w-full max-w-6xl px-6 py-6 text-sm text-slate-500">
+              © 2026 FitLife. All rights reserved.
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   );
