@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import SiteNav from "./components/site-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,13 +9,6 @@ export const metadata = {
   title: "FitLife | 健康管理品牌",
   description: "FitLife 專注於健康管理與體態優化，提供專業服務與商品方案。",
 };
-
-const navLinks = [
-  { label: "商品", href: "/products" },
-  { label: "關於我們", href: "#about" },
-  { label: "店面資訊", href: "#locations" },
-  { label: "聯絡我們", href: "#contact" },
-];
 
 export default function RootLayout({ children }) {
   return (
@@ -26,16 +20,8 @@ export default function RootLayout({ children }) {
               <Link href="/" className="text-xl font-semibold text-slate-900">
                 FitLife
               </Link>
-              <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="transition hover:text-slate-900"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+              <nav className="hidden md:flex">
+                <SiteNav />
               </nav>
               <Link
                 href="/products"
