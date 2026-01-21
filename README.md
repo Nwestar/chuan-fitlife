@@ -13,7 +13,7 @@ npm run dev
 
 ## 專案結構
 
-- `src/app`：App Router 頁面與路由
-- `src/data`：前台商品資料（可替換為後台來源）
-- `src/lib`：資料存取邏輯
+- `app`：App Router 頁面與路由
+- `app/data`：前台商品資料（可替換為後台來源）
+- `app/lib`：資料存取邏輯
 - `public/images`：品牌素材
