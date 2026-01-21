@@ -1,0 +1,20 @@
+[
+  {
+    "id": "protein-original",
+    "name": "綜合植物蛋白飲",
+    "flavor": "原味",
+    "weight": "550g",
+    "price": 1850,
+    "image": "https://images.unsplash.com/placeholder1",
+    "status": "active"
+  },
+  {
+    "id": "protein-chocolate",
+    "name": "綜合植物蛋白飲",
+    "flavor": "巧克力",
+    "weight": "550g",
+    "price": 1850,
+    "image": "https://images.unsplash.com/placeholder2",
+    "status": "active"
+  }
+]
