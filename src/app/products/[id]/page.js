@@ -63,7 +63,6 @@ export default function ProductDetailPage({ params }) {
           <div className="space-y-6">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">
-                FitLife
               </p>
               <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
                 {product.name}
