@@ -22,7 +22,7 @@ export default function ProductDetailPage({ params }) {
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative h-80 overflow-hidden rounded-3xl bg-slate-100 shadow-inner sm:h-96">
             <Image
-              src={product.image}
+              src={product.imageUrl}
               alt={product.name}
               fill
               className="object-cover"

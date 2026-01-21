@@ -36,7 +36,7 @@ export default function ProductsPage() {
               >
                 <div className="relative h-48 w-full bg-slate-100">
                   <Image
-                    src={product.image}
+                    src={product.imageUrl}
                     alt={product.name}
                     fill
                     className="object-cover"
