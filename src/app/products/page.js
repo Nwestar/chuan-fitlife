@@ -1,38 +1,13 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { fetchProducts } from "../../lib/products";
+import { getProducts } from "../../lib/products";
 
 export const metadata = {
   title: "FitLife | 商品列表",
 };
 
-const statusLabelMap = {
-  active: "上架中",
-  inactive: "已下架",
-  draft: "草稿",
-};
-
 export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const items = await fetchProducts();
-        setProducts(items);
-      } catch (error) {
-        setProducts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadProducts();
-  }, []);
+  const products = getProducts();
 
   return (
     <div className="bg-slate-50">
@@ -49,9 +24,7 @@ export default function ProductsPage() {
           </p>
         </div>
 
-        {loading ? (
-          <p className="text-sm text-slate-600">載入中...</p>
-        ) : products.length === 0 ? (
+        {products.length === 0 ? (
           <p className="text-sm text-slate-600">目前尚無商品資料。</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -63,34 +36,25 @@ export default function ProductsPage() {
               >
                 <div className="relative h-48 w-full bg-slate-100">
                   <Image
-                    src={product.imageUrl || "/images/lean-reset.svg"}
+                    src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-6">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-brand-600">
-                    <span>健康補給</span>
-                    {product.status ? (
-                      <span className="rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold text-brand-700">
-                        {statusLabelMap[product.status] ?? product.status}
-                      </span>
-                    ) : null}
+                  <div className="text-xs uppercase tracking-[0.2em] text-brand-600">
+                    健康補給
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold text-slate-900">
                       {product.name}
                     </h2>
                     <p className="mt-1 text-sm text-slate-600">
-                      {product.flavor ? `${product.flavor}風味` : ""}
-                      {product.flavor && product.weight ? " · " : ""}
-                      {product.weight}
+                      {product.flavor}風味 · {product.weight}
                     </p>
                   </div>
-                  <p className="text-sm text-slate-600">
-                    {product.description || "專為體態管理設計的健康補給方案。"}
-                  </p>
                   <div className="mt-auto text-base font-semibold text-brand-700">
                     NT$ {Number(product.price).toLocaleString()}
                   </div>
