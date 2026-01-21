@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchProductById } from "../../lib/products";
+import { formatPrice } from "../../../src/lib/price";
 
 export default function ProductDetailPage({ params }) {
   const [product, setProduct] = useState(null);
@@ -51,9 +52,17 @@ export default function ProductDetailPage({ params }) {
                 <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
                   {product.name}
                 </h1>
-                <p className="mt-3 text-lg font-semibold text-brand-700">
-                  NT$ {Number(product.price).toLocaleString()}
-                </p>
+                {(() => {
+                  const price = product.price;
+                  const isVIP = false;
+                  const finalPrice = isVIP ? Math.round(price * 0.9) : price;
+
+                  return (
+                    <p className="mt-3 text-lg font-semibold text-brand-700">
+                      {formatPrice(finalPrice)}
+                    </p>
+                  );
+                })()}
                 <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
                   <span className="rounded-full border border-slate-200 bg-white px-3 py-1">
                     {product.flavor}風味

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../lib/products";
+import { formatPrice } from "../../src/lib/price";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
@@ -40,39 +41,45 @@ export default function ProductsPage() {
           <p className="text-sm text-slate-600">目前尚無商品資料。</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <Link
-                key={product.id}
-                href={`/products/${product.id}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="relative h-48 w-full bg-slate-100">
-                  <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-6">
-                  <div className="text-xs uppercase tracking-[0.2em] text-brand-600">
-                    健康補給
+            {products.map((product) => {
+              const price = product.price;
+              const isVIP = false;
+              const finalPrice = isVIP ? Math.round(price * 0.9) : price;
+
+              return (
+                <Link
+                  key={product.id}
+                  href={`/products/${product.id}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="relative h-48 w-full bg-slate-100">
+                    <Image
+                      src={product.imageUrl}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
                   </div>
-                  <div>
-                    <h2 className="text-lg font-semibold text-slate-900">
-                      {product.name}
-                    </h2>
-                    <p className="mt-1 text-sm text-slate-600">
-                      {product.flavor}風味 · {product.weight}
-                    </p>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <div className="text-xs uppercase tracking-[0.2em] text-brand-600">
+                      健康補給
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-semibold text-slate-900">
+                        {product.name}
+                      </h2>
+                      <p className="mt-1 text-sm text-slate-600">
+                        {product.flavor}風味 · {product.weight}
+                      </p>
+                    </div>
+                    <div className="mt-auto text-base font-semibold text-brand-700">
+                      {formatPrice(finalPrice)}
+                    </div>
                   </div>
-                  <div className="mt-auto text-base font-semibold text-brand-700">
-                    NT$ {Number(product.price).toLocaleString()}
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         )}
       </section>
