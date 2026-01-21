@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { fetchProducts } from "../lib/products";
+import { fetchProducts } from "../../src/lib/products";
 import { formatPrice } from "../../src/lib/price";
 
 export default function ProductsPage() {
