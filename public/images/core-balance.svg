@@ -1,0 +1,7 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#E2F1ED"/>
+  <circle cx="560" cy="240" r="170" fill="#7FBEB2"/>
+  <circle cx="260" cy="360" r="130" fill="#2F7D72"/>
+  <path d="M220 420C300 330 440 300 560 360" stroke="#123A36" stroke-width="18" stroke-linecap="round"/>
+  <text x="80" y="140" fill="#1B4B46" font-size="48" font-family="Arial, sans-serif" font-weight="700">Core Balance</text>
+</svg>
