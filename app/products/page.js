@@ -37,8 +37,6 @@ export default function ProductsPage() {
 
         {loading ? (
           <p className="text-sm text-slate-600">載入中...</p>
-        ) : products.length === 0 ? (
-          <p className="text-sm text-slate-600">目前尚無商品資料。</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => {
