@@ -1,26 +1,20 @@
 [
   {
-    "id": "core-balance",
-    "name": "Core Balance 訓練組",
-    "price": 1280,
-    "image": "/images/core-balance.svg",
-    "description": "針對核心穩定與姿勢優化設計的訓練套組，適合居家與健身房使用。",
-    "usage": "每週 3-4 次，每次 20 分鐘，搭配深層呼吸與穩定節奏。"
+    "id": "protein-original",
+    "name": "綜合植物蛋白飲",
+    "flavor": "原味",
+    "weight": "550g",
+    "price": 1850,
+    "image": "https://images.unsplash.com/placeholder1",
+    "status": "active"
   },
   {
-    "id": "lean-reset",
-    "name": "Lean Reset 代謝計畫",
-    "price": 980,
-    "image": "/images/lean-reset.svg",
-    "description": "以低負擔循環訓練搭配營養建議，協助維持健康體態與精實線條。",
-    "usage": "循環訓練 4 組，每組 6-8 分鐘，搭配足量飲水。"
-  },
-  {
-    "id": "mobility-flow",
-    "name": "Mobility Flow 伸展套件",
-    "price": 760,
-    "image": "/images/mobility-flow.svg",
-    "description": "提升柔軟度與關節活動度的日常伸展方案，舒緩久坐緊繃。",
-    "usage": "每日 10-15 分鐘，從上半身延伸到下肢，保持順暢呼吸。"
+    "id": "protein-chocolate",
+    "name": "綜合植物蛋白飲",
+    "flavor": "巧克力",
+    "weight": "550g",
+    "price": 1850,
+    "image": "https://images.unsplash.com/placeholder2",
+    "status": "active"
   }
 ]

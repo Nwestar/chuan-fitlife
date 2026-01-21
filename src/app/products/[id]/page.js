@@ -1,13 +1,45 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { getProductById } from "../../../lib/products";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { fetchProductById } from "../../../lib/products";
 
 export default function ProductDetailPage({ params }) {
-  const product = getProductById(params.id);
+  const router = useRouter();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const item = await fetchProductById(params.id);
+        if (!item) {
+          router.replace("/products");
+          return;
+        }
+        setProduct(item);
+      } catch (error) {
+        router.replace("/products");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProduct();
+  }, [params.id, router]);
+
+  if (loading) {
+    return (
+      <div className="mx-auto w-full max-w-6xl px-6 py-16">
+        <p className="text-sm text-slate-600">載入中...</p>
+      </div>
+    );
+  }
 
   if (!product) {
-    notFound();
+    return null;
   }
 
   return (
@@ -15,14 +47,14 @@ export default function ProductDetailPage({ params }) {
       <section className="mx-auto w-full max-w-6xl px-6 py-12">
         <Link
           href="/products"
-          className="text-sm font-semibold text-brand-600 transition hover:text-brand-700"
+          className="text-sm font-semibold text-brand-700 transition hover:text-brand-800"
         >
           ← 回到商品列表
         </Link>
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="relative h-80 overflow-hidden rounded-3xl bg-slate-100 shadow-inner sm:h-96">
             <Image
-              src={product.image}
+              src={product.imageUrl || "/images/lean-reset.svg"}
               alt={product.name}
               fill
               className="object-cover"
@@ -30,26 +62,44 @@ export default function ProductDetailPage({ params }) {
           </div>
           <div className="space-y-6">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">
-                FitLife
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">
               </p>
               <h1 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">
                 {product.name}
               </h1>
-              <p className="mt-3 text-lg font-semibold text-brand-600">
-                NT$ {product.price.toLocaleString()}
+              <p className="mt-3 text-lg font-semibold text-brand-700">
+                NT$ {Number(product.price).toLocaleString()}
               </p>
+              <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
+                {product.flavor ? (
+                  <span className="rounded-full border border-slate-200 bg-white px-3 py-1">
+                    {product.flavor}風味
+                  </span>
+                ) : null}
+                {product.weight ? (
+                  <span className="rounded-full border border-slate-200 bg-white px-3 py-1">
+                    {product.weight}
+                  </span>
+                ) : null}
+                {product.status ? (
+                  <span className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-brand-700">
+                    {product.status}
+                  </span>
+                ) : null}
+              </div>
             </div>
             <div className="space-y-3">
               <h2 className="text-lg font-semibold text-slate-900">商品介紹</h2>
               <p className="text-base leading-relaxed text-slate-600">
-                {product.description}
+                {product.description ||
+                  "提供健康補給與體態管理支持，協助你建立長期的生活習慣。"}
               </p>
             </div>
             <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-6">
               <h2 className="text-lg font-semibold text-slate-900">使用方法</h2>
               <p className="text-base leading-relaxed text-slate-600">
-                {product.usage}
+                {product.usage ||
+                  "建議依照個人需求每日補充，搭配規律作息與運動習慣。"}
               </p>
             </div>
           </div>

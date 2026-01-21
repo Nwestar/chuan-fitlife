@@ -87,13 +87,15 @@ export default function AdminPage() {
                       </p>
                     </div>
                     <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">
-                      商品管理
+                      {product.status ?? "商品管理"}
                     </span>
                   </div>
                   <div className="mt-3 grid gap-2 text-sm text-slate-600">
-                    <p>描述：{product.description}</p>
-                    <p>使用方法：{product.usage}</p>
-                    <p>圖片：{product.imageUrl}</p>
+                    <p>風味：{product.flavor ?? "-"}</p>
+                    <p>重量：{product.weight ?? "-"}</p>
+                    <p>描述：{product.description ?? "-"}</p>
+                    <p>使用方法：{product.usage ?? "-"}</p>
+                    <p>圖片：{product.imageUrl ?? product.image ?? "-"}</p>
                   </div>
                 </div>
               ))}
