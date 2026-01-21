@@ -5,10 +5,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../lib/products";
 
-export const metadata = {
-  title: "FitLife | 商品列表",
-};
-
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
