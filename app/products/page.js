@@ -1,13 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { getProducts } from "../lib/products";
+import { useEffect, useState } from "react";
+import { fetchProducts } from "../lib/products";
 
 export const metadata = {
   title: "FitLife | 商品列表",
 };
 
 export default function ProductsPage() {
-  const products = getProducts();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const items = await fetchProducts();
+      setProducts(items);
+      setLoading(false);
+    };
+
+    loadProducts();
+  }, []);
 
   return (
     <div className="bg-slate-50">
@@ -24,7 +38,9 @@ export default function ProductsPage() {
           </p>
         </div>
 
-        {products.length === 0 ? (
+        {loading ? (
+          <p className="text-sm text-slate-600">載入中...</p>
+        ) : products.length === 0 ? (
           <p className="text-sm text-slate-600">目前尚無商品資料。</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
